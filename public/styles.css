@@ -639,7 +639,7 @@ a {
   padding: 0;
   margin: 0;
   display: grid;
-  gap: 1rem;
+  gap: 0.6rem;
 }
 
 .song-item {
@@ -647,8 +647,8 @@ a {
   grid-template-columns: 1fr auto;
   align-items: center;
   gap: 1rem;
-  padding: 1rem 1rem 1rem 1.15rem;
-  border-radius: 22px;
+  padding: 0.4rem 1rem;
+  border-radius: 16px;
   border: 1px solid rgba(43, 29, 22, 0.08);
   background: rgba(255, 255, 255, 0.9);
 }
@@ -840,10 +840,16 @@ a {
 }
 
 .song-error {
+  grid-column: 1 / -1;
   color: #a32f3f;
   font-size: 0.9rem;
   margin-top: 0.35rem;
   text-align: left;
+}
+
+.song-error:empty {
+  display: none;
+  margin-top: 0;
 }
 
 .song-meta strong {

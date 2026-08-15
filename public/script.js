@@ -170,8 +170,8 @@ function renderSongs(songs) {
     actions.appendChild(button);
     actions.appendChild(likes);
     item.appendChild(meta);
-    item.appendChild(errorDiv);
     item.appendChild(actions);
+    item.appendChild(errorDiv);
     songsList.appendChild(item);
   });
 }
