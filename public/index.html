@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Aleksandra i Szymon | Zaproszenie</title>
+  <script>
+    const url = new URL(window.location.href);
+    if (!url.searchParams.has('v')) {
+      url.searchParams.set('v', Date.now());
+      window.location.replace(url.toString());
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css?v=20260815" />
+</head>
+<body class="splash-open">
+  <div id="splash" class="splash-screen">
+    <div class="splash-content">
+      <img class="splash-image" src="/zapro_1.png?v=20260815" alt="Zaproszenie" />
+      <div class="splash-text">Kliknij, aby otworzyć zaproszenie</div>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">Aleksandra i Szymon</div>
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+    <nav class="menu">
+      <a href="#invite">Zaproszenie</a>
+      <a href="#details">Szczegóły</a>
+      <a href="#contact">Kontakt</a>
+      <a href="#playlist">Playlista</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="invite" class="section hero-section">
+      <div class="hero-card">
+        <img src="/Aleksandra i Szymon2.png?v=20260815" alt="Aleksandra i Szymon" />
+      </div>
+    </section>
+
+    <section id="countdown" class="section countdown-section">
+      <div class="countdown-panel">
+        <div class="countdown-inner">
+          
+          <p class="countdown-invite"><span class="names-script">Ola i Szymon</span> zapraszają na wspólne świętowanie z okazji zmiany stanu cywilnego</p>
+          <p class="countdown-invite"><strong>Widzimy się za</strong></p>
+          <div class="countdown-grid">
+            <div><span id="days">00</span><small>Dni</small></div>
+            <div><span id="hours">00</span><small>Godzin</small></div>
+            <div><span id="minutes">00</span><small>Minut</small></div>
+            <div><span id="seconds">00</span><small>Sekund</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="details" class="section details-section">
+      <div class="detail-card">
+        <img src="/info.png?v=20260815" alt="Szczegóły" />
+      </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+      <div class="contact-card">
+        <div class="contact-copy">
+          <h2>Kontakt</h2>
+          <p>Jeśli masz pytania, napisz lub zadzwoń:</p>
+            <div class="contact-list">
+              <div class="contact-entry">
+                <strong>Ola</strong>
+                <span class="phone masked" data-number="781454534">78 ***********</span>
+              </div>
+              <div class="contact-entry">
+                <strong>Szymon</strong>
+                <span class="phone masked" data-number="784213783">78 ***********</span>
+              </div>
+            </div>
+            <div style="text-align:center; margin-top:0.75rem;">
+              <button type="button" class="reveal-contacts-global" aria-expanded="false">Pokaż kontakty</button>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="playlist" class="section playlist-section">
+      <div class="playlist-card">
+        <div class="playlist-form-wrapper">
+          <div class="playlist-form-card">
+            <h2>Zaproponuj utwór do playlisty</h2>
+            <form id="song-form">
+              <label>
+                <span>Tytuł utworu</span>
+                <input type="text" id="title" name="title" placeholder="Wpisz tytuł" required />
+              </label>
+              <label>
+                <span>Wykonawca</span>
+                <input type="text" id="artist" name="artist" placeholder="Wpisz wykonawcę" required />
+              </label>
+              <input type="hidden" id="spamTrap" name="spamTrap" value="" />
+              <button type="submit">Dodaj do playlisty</button>
+              <p class="form-note">Utwory będą sortowane według polubień.</p>
+              <div id="form-message" class="form-message"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="songs" class="section songs-section">
+      <div class="songs-background"></div>
+      <div class="songs-panel">
+        <div class="songs-header">
+          <h2>Lista utworów</h2>
+          <p>Kliknij serduszko, jeśli utwór Ci się podoba.</p>
+        </div>
+        <ul id="songsList" class="songs-list"></ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- reCAPTCHA v3: invisible, score-based. No visible checkbox — only a
+       small "protected by reCAPTCHA" badge floats in the corner. -->
+  <script src="https://www.google.com/recaptcha/api.js?render=6Lc5tIctAAAAADRtrhGy_dnu78zXcftJ5sMw5u_Z" async defer></script>
+  <script src="/script.js?v=20260815"></script>
+</body>
+</html>

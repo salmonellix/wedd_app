@@ -1,0 +1,1037 @@
+:root {
+  --bg: #ffffff;
+  --desktop-bg: #ffffff;
+  --surface: #ffffff;
+  --text: #2b1d16;
+  --muted: #6b5a5e;
+  --accent: #411117;
+  --accent-soft: #d08996;
+  --border: rgba(43, 29, 22, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--text);
+  background: #4a1520;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+@media (min-width: 860px) {
+  html, body {
+    background: #4a1520;
+  }
+  .section {
+    max-width: 735px;
+    margin: 0.85rem auto;
+    padding: 2.5rem 1.8rem;
+    border-radius: 32px;
+    background: transparent;
+    overflow: hidden;
+  }}
+
+img {
+  width: 100%;
+  max-width: 735px;
+  display: block;
+}
+
+.splash-image {
+  width: auto;
+  max-width: none;
+  border-radius: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+  .topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+}
+
+.brand {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+/* Brand color: used for heading and dropdown background */
+.brand {
+  color: var(--accent);
+}
+
+/* Menu toggle (hamburger) style - hidden by default, shown on mobile only */
+.menu-toggle {
+  display: none;
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  padding: 0.45rem 0.65rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.menu-toggle:focus {
+  outline: 2px solid rgba(255,255,255,0.12);
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.menu a {
+  font-size: 0.95rem;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.menu a:hover {
+  color: var(--accent);
+}
+
+.section {
+  width: 100%;
+  max-width: 735px;
+  margin: 0 auto;
+  padding: 2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background: transparent;
+}
+
+.section {
+  margin-bottom: 1rem;
+}
+
+.hero-section {
+  padding-top: 0;
+}
+
+.hero-card {
+  max-width: 735px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-card img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(43, 29, 22, 0.15);
+  object-fit: cover;
+}
+
+.hero-text {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(88%, 520px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 1.25rem;
+  color: #ffffff;
+  text-shadow: 0 16px 30px rgba(0,0,0,0.35);
+}
+
+.hero-text p,
+.decorative-heading {
+  font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.hero-text p {
+  font-size: 1.25rem;
+  margin: 0 0 0.25rem;
+}
+
+.hero-text h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+}
+
+.countdown-section {
+  text-align: center;
+}
+
+.countdown-invite {
+  margin: 0 0 1.25rem;
+  color: var(--text);
+  font-size: 1.05rem;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.countdown-invite .names-script {
+  display: block;
+  font-family: 'Great Vibes', 'Montserrat', cursive;
+  font-size: clamp(2.5rem, 5vw, 3.4rem);
+  line-height: 1;
+  margin-bottom: 0.6rem;
+  color: var(--text);
+}
+
+.countdown-panel {
+  width: 100%;
+  max-width: 735px;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.countdown-inner {
+  padding: 2.25rem 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+}
+
+/* Unified text, font and border for light panels */
+.countdown-inner,
+.countdown-inner *,
+.countdown-grid div,
+.contact-list div,
+.playlist-form-card,
+.song-item,
+.songs-panel,
+.detail-sheet {
+  color: var(--text);
+  border-color: var(--border);
+  font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.countdown-section h2 {
+  margin: 1rem 0 1.75rem;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: none;
+}
+
+.countdown-grid div {
+  background: rgba(255, 255, 255, 0.9);
+  border: 0;
+  border-radius: 18px;
+  padding: 1.1rem 0;
+  box-shadow: none;
+}
+
+.countdown-grid span {
+  display: block;
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+
+.countdown-grid small {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--muted);
+}
+
+.details-section,
+.contact-section,
+.playlist-section,
+.songs-section {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  max-width: none;
+    margin: 0 auto;
+  padding: 0 0 2rem;
+}
+
+.detail-card,
+.contact-card,
+.playlist-card,
+.songs-panel {
+  width: 100%;
+  max-width: 735px;
+  margin: 0 auto;
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: none;
+  place-items: center;
+}
+
+.details-section {
+  background: transparent;
+}
+
+.detail-card,
+.contact-card,
+.playlist-card,
+.songs-panel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-items: center;
+}
+
+.songs-section {
+  position: relative;
+}
+
+.songs-background {
+  display: none;
+}
+
+@media (min-width: 860px) {
+  .songs-background {
+    display: block;
+  }
+}
+
+.detail-card {
+  position: relative;
+}
+
+.detail-card img,
+.contact-card img,
+.playlist-card img,
+.songs-panel img,
+.hero-card img {
+  width: 100%;
+  height: auto;
+  max-width: 735px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 24px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.detail-sheet {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(84%, 420px);
+  max-width: 420px;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  gap: 0.45rem;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.detail-sheet h2,
+.contact-copy h2,
+.playlist-form-card h2 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.detail-sheet h2 {
+  font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 2.2rem;
+  margin-bottom: 0.35rem;
+}
+
+.detail-sheet ul {
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.detail-sheet ul,
+.detail-sheet li {
+  font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.detail-sheet li {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.detail-sheet .icon {
+  display: none;
+}
+
+.contact-copy p {
+  margin: 0 0 1rem;
+  color: var(--muted);
+}
+
+.contact-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.contact-list div {
+  padding: 1rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--border);
+}
+
+/* Contact overlay on top of contact image */
+.contact-card {
+  position: relative;
+}
+
+.contact-copy {
+  position: static;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 520px;
+  background: transparent;
+  color: var(--text);
+  z-index: 2;
+  text-align: center;
+  padding: 0;
+}
+
+.contact-copy h2 {
+  margin: 0 0 0.5rem;
+  color: var(--text);
+}
+
+.contact-section .contact-list {
+  margin: 0;
+}
+
+.contact-section .contact-list div {
+  padding: 0.6rem 0.9rem;
+  border-radius: 12px;
+  background: var(--accent);
+  color: #fff7ed;
+  border: none;
+  box-shadow: none;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.contact-section .contact-list div a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Contact reveal styles */
+.contact-entry {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  justify-content: space-between;
+}
+
+.contact-entry strong {
+  flex: 0 0 auto;
+  margin-right: 0.6rem;
+}
+
+.phone {
+  flex: 1 1 auto;
+  text-align: right;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.phone.masked {
+  color: var(--muted);
+}
+
+.reveal-contacts-global {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid rgba(43,29,22,0.08);
+  padding: 0.5rem 0.75rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.reveal-contacts-global[aria-expanded="true"] {
+  background: rgba(65,17,23,0.08);
+}
+
+.playlist-form-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  padding: 1.5rem;
+  max-width: 735px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto 1rem;
+  position: relative;
+  text-align: center;
+  z-index: 2;
+}
+
+.playlist-form-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 0;
+}
+.playlist-form-card label {
+  display: grid;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+}
+
+.playlist-form-card span {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.playlist-form-card input {
+  width: 100%;
+  border: 1px solid rgba(43, 29, 22, 0.12);
+  border-radius: 14px;
+  padding: 0.95rem 1rem;
+  font-size: 1rem;
+  background: #fff;
+}
+
+.playlist-form-card button {
+  width: 100%;
+  border: 0;
+  border-radius: 16px;
+  background: var(--accent);
+  color: #fff;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.playlist-form-card button:hover {
+  background: rgb(109, 22, 26);
+}
+
+/* Keep the same brand color when button is focused or active */
+.playlist-form-card button:focus,
+.playlist-form-card button:active {
+  background: var(--accent);
+  outline: none;
+  box-shadow: none;
+}
+
+/* Keep same appearance when disabled/visited */
+.playlist-form-card button:disabled,
+.playlist-form-card button:visited {
+  background: var(--accent);
+  color: #fff;
+}
+
+.form-note {
+  margin: 0.85rem 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.form-message {
+  margin-top: 0.9rem;
+  min-height: 1.2rem;
+  color: #411117;
+}
+
+.songs-section {
+  padding-bottom: 3rem;
+}
+
+.songs-background {
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  z-index: 0;
+}
+
+.contact-card,
+.playlist-card,
+.songs-panel {
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(6px);
+  padding: 2rem 1.2rem;
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 25px 80px rgba(43, 29, 22, 0.12);
+  width: 100%;
+  max-width: 735px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+/* playlist-form-card is the actual visible card; playlist-card is just its
+   layout wrapper, so it must not add its own padding/background on top */
+.playlist-card {
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  backdrop-filter: none;
+}
+
+.songs-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.songs-header h2 {
+  margin: 0 0 0.5rem;
+}
+
+.songs-header p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.songs-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.song-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1rem 1rem 1.15rem;
+  border-radius: 22px;
+  border: 1px solid rgba(43, 29, 22, 0.08);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 859px) {
+  .section {
+    padding: 0;
+  }
+
+  .hero-card,
+  .detail-card,
+  .contact-card,
+  .playlist-card,
+  .songs-panel {
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .hero-card img,
+  .detail-card img,
+  .contact-card img,
+  .playlist-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0;
+  }
+
+  .detail-card,
+  .contact-card,
+  .playlist-card {
+    background: transparent;
+  }
+
+  .topbar {
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .songs-panel {
+    background: transparent;
+    padding: 1.25rem 1rem 2rem;
+  }
+
+  .songs-list {
+    gap: 0.5rem;
+  }
+
+  /* Mobile: keep top padding for sections and make menu inline and countdown single-line */
+  .section {
+    padding: 1rem;
+  }
+
+  .menu {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .menu a {
+    white-space: nowrap;
+    padding: 0.35rem 0.5rem;
+  }
+
+  .countdown-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 0.6rem;
+    justify-content: center;
+    align-items: center;
+    overflow-x: auto;
+    padding: 0.25rem 0;
+  }
+
+  .countdown-grid div {
+    flex: 0 0 auto;
+    min-width: 56px;
+    padding: 0.6rem 0.8rem;
+    border-radius: 12px;
+  }
+
+  .countdown-grid span {
+    font-size: 1.6rem;
+  }
+
+  .countdown-invite .names-script {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+    margin-bottom: 0.35rem;
+  }
+}
+
+/* Mobile dropdown behavior for menu */
+@media (max-width: 859px) {
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent);
+    border: 0;
+    font-size: 1.35rem;
+    padding: 0.35rem 0.6rem;
+    color: #fff;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    gap: 0.25rem;
+    background: var(--accent);
+    position: absolute;
+    top: 100%;
+    right: 0.75rem;
+    z-index: 60;
+    padding: 0.5rem;
+    border-radius: 8px;
+    min-width: 160px;
+  }
+
+  .menu.open {
+    display: flex;
+  }
+
+  .menu a {
+    color: #fff;
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+/* Full-bleed hero and detail images on mobile */
+@media (max-width: 859px) {
+  .hero-section,
+  .details-section {
+    padding: 0;
+  }
+
+  .hero-card,
+  .detail-card {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 0;
+  }
+
+  .hero-card img,
+  .detail-card img {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+  }
+}
+
+/* Countdown should shrink to fit on small screens without horizontal scroll */
+@media (max-width: 520px) {
+  .countdown-grid div {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0.5rem 0.6rem;
+  }
+
+  .countdown-grid span {
+    font-size: clamp(1.2rem, 6vw, 1.6rem);
+  }
+
+  .countdown-invite .names-script {
+    font-size: clamp(1.4rem, 8vw, 1.8rem);
+  }
+}
+
+/* Ensure playlist title scales to fit one line on small screens */
+@media (max-width: 859px) {
+  .playlist-form-card h2 {
+    font-size: clamp(1rem, 6.5vw, 1.6rem);
+  }
+}
+
+/* Make songs and contact panels use the same surface as playlist form */
+.songs-panel,
+.contact-card {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-radius: 24px !important;
+  padding: 1.5rem !important;
+}
+
+.song-meta {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.song-error {
+  color: #a32f3f;
+  font-size: 0.9rem;
+  margin-top: 0.35rem;
+  text-align: left;
+}
+
+.song-meta strong {
+  font-size: 1rem;
+}
+
+.song-meta small {
+  color: var(--muted);
+}
+
+.song-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.song-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--accent);
+}
+
+.song-actions button.liked {
+  color: #411117;
+}
+
+.song-actions span {
+  font-weight: 700;
+}
+
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.splash-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.splash-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.splash-content img:not(.splash-image) {
+  display: none;
+}
+
+.splash-text {
+  position: relative;
+  z-index: 2;
+  color: #ffffff;
+  font-size: 1rem;
+  text-shadow: 0 0 16px rgba(0,0,0,0.7);
+}
+
+.splash-text {
+  margin-top: 1rem;
+  color: #fff;
+  font-size: 1rem;
+}
+
+body.splash-open .topbar,
+body.splash-open main {
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+body.splash-open {
+  overflow: hidden;
+}
+
+@media (min-width: 760px) {
+  .menu {
+    gap: 1rem;
+  }
+
+  .countdown-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .contact-card,
+  .playlist-card,
+  .detail-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+  }
+
+  .detail-sheet,
+  .contact-copy {
+    padding: 2rem;
+  }
+
+  .playlist-form-card {
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Splash / start screen - mobile tweaks */
+@media (max-width: 859px) {
+  .splash-screen {
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35));
+    padding: 1rem 0.5rem;
+  }
+
+  .splash-content {
+    align-items: center;
+    justify-content: center;
+    width: min(92vw, 760px);
+    max-width: 92vw;
+    margin: 0 auto;
+    position: relative;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .splash-image {
+    position: relative;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 20px;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+  }
+
+  .splash-text {
+    font-size: 1.05rem;
+    padding: 0.5rem 0.75rem;
+    text-align: center;
+    max-width: 100%;
+    line-height: 1.2;
+    color: #fff;
+  }
+
+  /* Make the tap area clear and not obscured by system UI */
+  .splash-screen {
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+/* Ensure playlist section has top spacing so form isn't clipped */
+@media (min-width: 760px) {
+  .playlist-section {
+    padding-top: 1.5rem;
+  }
+}
+
+@media (min-width: 1100px) {
+  .section {
+    padding: 3rem 2rem;
+  }
+
+  .topbar {
+    padding: 1rem 2rem;
+  }
+
+  .hero-section {
+    padding-top: 1rem;
+  }
+}
