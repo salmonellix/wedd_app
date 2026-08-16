@@ -141,11 +141,19 @@ function getLikedSongs() {
 
   initContactReveal();
 
-function saveLikedSong(id) {
-  const liked = new Set(getLikedSongs());
-  liked.add(id);
-  localStorage.setItem(likedStorageKey, JSON.stringify([...liked]));
+function setLikedSong(id, liked) {
+  const likedSet = new Set(getLikedSongs());
+  if (liked) {
+    likedSet.add(id);
+  } else {
+    likedSet.delete(id);
+  }
+  localStorage.setItem(likedStorageKey, JSON.stringify([...likedSet]));
 }
+
+const heartIconMarkup = `<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+</svg>`;
 
 function showMessage(text, isError = true) {
   messageBox.textContent = text;
@@ -193,12 +201,11 @@ function renderSongs(songs) {
     likes.textContent = song.likes;
     const button = document.createElement('button');
     button.type = 'button';
-    button.innerHTML = likedIds.has(song.id) ? '❤' : '🤍';
+    button.innerHTML = heartIconMarkup;
     if (likedIds.has(song.id)) {
       button.classList.add('liked');
-      button.disabled = true;
     }
-    button.addEventListener('click', () => likeSong(song.id));
+    button.addEventListener('click', () => toggleLike(song.id));
 
     actions.appendChild(button);
     actions.appendChild(likes);
@@ -209,7 +216,7 @@ function renderSongs(songs) {
   });
 }
 
-async function likeSong(id) {
+async function toggleLike(id) {
   try {
     const response = await fetch(`/api/songs/${id}/like`, {
       method: 'POST',
@@ -235,8 +242,8 @@ async function likeSong(id) {
       return showMessage(result.error || 'Nie można polubić utworu.', true);
     }
 
-    saveLikedSong(id);
-    showMessage('Utwór został polubiony!', false);
+    setLikedSong(id, result.liked);
+    showMessage(result.liked ? 'Utwór został polubiony!' : 'Cofnięto polubienie utworu.', false);
     fetchSongs();
   } catch (error) {
     showMessage('Problemy z polubieniem utworu. Spróbuj ponownie.', true);

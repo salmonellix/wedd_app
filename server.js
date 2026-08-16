@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 function loadEnvFile() {
   const envPath = path.join(__dirname, '.env');
@@ -19,6 +20,7 @@ function loadEnvFile() {
 loadEnvFile();
 
 const app = express();
+app.set('trust proxy', 1);
 const port = process.env.PORT || 3000;
 const dataDir = process.env.DATA_DIR ? path.resolve(process.env.DATA_DIR) : path.join(__dirname, 'data');
 const songsFile = path.join(dataDir, 'songs.json');
@@ -29,8 +31,32 @@ const rateWindowMs = 60_000;
 const maxRequestsPerWindow = 100;
 const rateMap = new Map();
 
+function parseCookies(header) {
+  const cookies = {};
+  if (!header) return cookies;
+  header.split(';').forEach((pair) => {
+    const idx = pair.indexOf('=');
+    if (idx === -1) return;
+    const key = pair.slice(0, idx).trim();
+    const value = pair.slice(idx + 1).trim();
+    if (key) cookies[key] = decodeURIComponent(value);
+  });
+  return cookies;
+}
+
 app.disable('x-powered-by');
 app.use(express.json());
+app.use((req, res, next) => {
+  const cookies = parseCookies(req.headers.cookie);
+  let guestId = cookies.guestId;
+  if (!guestId) {
+    guestId = crypto.randomUUID();
+    const secure = req.secure ? '; Secure' : '';
+    res.setHeader('Set-Cookie', `guestId=${guestId}; Max-Age=31536000; Path=/; HttpOnly; SameSite=Lax${secure}`);
+  }
+  req.guestId = guestId;
+  next();
+});
 app.use((req, res, next) => {
   res.set('X-Robots-Tag', 'noindex, nofollow');
   res.set('Cache-Control', 'no-store');
@@ -163,12 +189,20 @@ app.post('/api/songs', async (req, res) => {
     return res.status(400).json({ error: 'Proszę podać tytuł i wykonawcę.' });
   }
 
+  const isDuplicate = songs.some((item) =>
+    item.title.toLowerCase() === safeTitle.toLowerCase() &&
+    item.artist.toLowerCase() === safeArtist.toLowerCase()
+  );
+  if (isDuplicate) {
+    return res.status(409).json({ error: 'Ten utwór jest już na liście.' });
+  }
+
   const song = {
     id: createId(),
     title: safeTitle,
     artist: safeArtist,
     likes: 0,
-    likedIps: []
+    likedSessions: []
   };
 
   songs.unshift(song);
@@ -188,16 +222,23 @@ app.post('/api/songs/:id/like', (req, res) => {
     return res.status(404).json({ error: 'Nie znaleziono utworu.' });
   }
 
-  const ip = req.ip;
-  if (song.likedIps.includes(ip)) {
-    return res.status(400).json({ error: 'Możesz polubić ten utwór tylko raz.', id: song.id, likes: song.likes, title: song.title });
+  const sessionIndex = (song.likedSessions || []).indexOf(req.guestId);
+  if (!song.likedSessions) song.likedSessions = [];
+  let liked;
+
+  if (sessionIndex === -1) {
+    song.likes += 1;
+    song.likedSessions.push(req.guestId);
+    liked = true;
+  } else {
+    song.likes = Math.max(0, song.likes - 1);
+    song.likedSessions.splice(sessionIndex, 1);
+    liked = false;
   }
 
-  song.likes += 1;
-  song.likedIps.push(ip);
   saveSongs(songs);
 
-  res.json({ id: song.id, likes: song.likes });
+  res.json({ id: song.id, likes: song.likes, liked });
 });
 
 app.listen(port, () => {
