@@ -67,6 +67,25 @@ function getLikedSongs() {
     return formatted.replace(/\d/g, '*');
   }
 
+  function copyToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+    try {
+      document.execCommand('copy');
+    } finally {
+      document.body.removeChild(textarea);
+    }
+    return Promise.resolve();
+  }
+
   function initContactReveal() {
     const phones = Array.from(document.querySelectorAll('.phone'));
     phones.forEach((phoneEl) => {
@@ -74,6 +93,17 @@ function getLikedSongs() {
       if (!full) return;
       phoneEl.textContent = maskNumber(full);
       phoneEl.classList.add('masked');
+
+      phoneEl.addEventListener('click', () => {
+        if (phoneEl.classList.contains('masked')) return;
+        copyToClipboard(full).then(() => {
+          const formatted = formatNumberForDisplay(full);
+          phoneEl.textContent = 'Skopiowano!';
+          setTimeout(() => {
+            phoneEl.textContent = formatted;
+          }, 1200);
+        });
+      });
     });
 
     const globalBtn = document.querySelector('.reveal-contacts-global');
@@ -86,9 +116,10 @@ function getLikedSongs() {
         phones.forEach((phoneEl) => {
           const full = phoneEl && phoneEl.dataset && phoneEl.dataset.number;
           if (!full) return;
-          const formatted = formatNumberForDisplay(full);
-          phoneEl.innerHTML = `<a href="tel:${full}">${formatted}</a>`;
+          phoneEl.textContent = formatNumberForDisplay(full);
           phoneEl.classList.remove('masked');
+          phoneEl.classList.add('copyable');
+          phoneEl.title = 'Kliknij, aby skopiować numer';
         });
         globalBtn.textContent = 'Ukryj kontakty';
         globalBtn.setAttribute('aria-expanded', 'true');
@@ -99,6 +130,8 @@ function getLikedSongs() {
           if (!full) return;
           phoneEl.textContent = maskNumber(full);
           phoneEl.classList.add('masked');
+          phoneEl.classList.remove('copyable');
+          phoneEl.removeAttribute('title');
         });
         globalBtn.textContent = 'Pokaż kontakty';
         globalBtn.setAttribute('aria-expanded', 'false');
@@ -181,7 +214,7 @@ async function likeSong(id) {
     const response = await fetch(`/api/songs/${id}/like`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ spamTrap: '' })
+      body: JSON.stringify({ myNameIs: '' })
     });
 
     const result = await response.json();
@@ -216,7 +249,7 @@ songForm.addEventListener('submit', async (event) => {
 
   const title = document.getElementById('title').value.trim();
   const artist = document.getElementById('artist').value.trim();
-  const spamTrap = document.getElementById('spamTrap').value;
+  const myNameIs = document.getElementById('myNameIs').value;
 
   if (!title || !artist) {
     return showMessage('Proszę podać tytuł i wykonawcę.');
@@ -236,7 +269,7 @@ songForm.addEventListener('submit', async (event) => {
     const response = await fetch('/api/songs', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, artist, spamTrap, recaptchaToken })
+      body: JSON.stringify({ title, artist, myNameIs, recaptchaToken })
     });
 
     const result = await response.json();

@@ -144,9 +144,9 @@ app.get('/api/songs', (req, res) => {
 });
 
 app.post('/api/songs', async (req, res) => {
-  const { title, artist, spamTrap = '', recaptchaToken = '' } = req.body || {};
+  const { title, artist, myNameIs = '', recaptchaToken = '' } = req.body || {};
 
-  if (typeof spamTrap !== 'string' || spamTrap.length > 0) {
+  if (typeof myNameIs !== 'string' || myNameIs.length > 0) {
     return res.status(400).json({ error: 'Nieprawidłowe zgłoszenie.' });
   }
 
@@ -177,9 +177,9 @@ app.post('/api/songs', async (req, res) => {
 });
 
 app.post('/api/songs/:id/like', (req, res) => {
-  const { spamTrap = '' } = req.body || {};
+  const { myNameIs = '' } = req.body || {};
 
-  if (typeof spamTrap !== 'string' || spamTrap.length > 0) {
+  if (typeof myNameIs !== 'string' || myNameIs.length > 0) {
     return res.status(400).json({ error: 'Nieprawidłowe zgłoszenie.' });
   }
 

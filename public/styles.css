@@ -486,6 +486,12 @@ a {
   color: var(--muted);
 }
 
+.phone.copyable {
+  cursor: pointer;
+  text-decoration: underline dotted rgba(43, 29, 22, 0.35);
+  text-underline-offset: 3px;
+}
+
 .reveal-contacts-global {
   display: inline-block;
   background: transparent;
@@ -689,6 +695,10 @@ a {
     border-bottom: 1px solid rgba(0,0,0,0.08);
   }
 
+  .countdown-inner {
+    padding: 1.5rem 1rem;
+  }
+
   .songs-panel {
     background: transparent;
     padding: 1.25rem 1rem 2rem;
@@ -716,17 +726,16 @@ a {
 
   .countdown-grid {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     gap: 0.6rem;
     justify-content: center;
     align-items: center;
-    overflow-x: auto;
     padding: 0.25rem 0;
   }
 
   .countdown-grid div {
-    flex: 0 0 auto;
-    min-width: 56px;
+    flex: 0 1 calc(25% - 0.6rem);
+    min-width: 70px;
     padding: 0.6rem 0.8rem;
     border-radius: 12px;
   }
@@ -805,8 +814,6 @@ a {
 /* Countdown should shrink to fit on small screens without horizontal scroll */
 @media (max-width: 520px) {
   .countdown-grid div {
-    flex: 1 1 0;
-    min-width: 0;
     padding: 0.5rem 0.6rem;
   }
 
