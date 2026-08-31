@@ -139,6 +139,94 @@ a {
   align-items: center;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.calendar-hotspot {
+  position: absolute;
+  top: 42%;
+  left: 26%;
+  width: 48%;
+  height: 12%;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+  display: block;
+}
+
+.calendar-hotspot:hover,
+.calendar-hotspot:focus-visible {
+  outline: 2px dashed rgba(255, 255, 255, 0.85);
+  outline-offset: 2px;
+}
+
+.calendar-hotspot-badge {
+  position: absolute;
+  top: 83%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1.75rem;
+  height: 1.75rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff7ed;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.calendar-menu {
+  position: absolute;
+  top: 56%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.75rem;
+  min-width: 220px;
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.calendar-menu[hidden] {
+  display: none;
+}
+
+.calendar-menu a,
+.calendar-menu button {
+  display: block;
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.9rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.calendar-menu a:hover,
+.calendar-menu button:hover {
+  background: var(--accent-soft);
+}
+
 .hero-card img {
   width: 100%;
   max-width: 100%;
@@ -269,6 +357,7 @@ a {
 }
 
 .details-section,
+.directions-section,
 .contact-section,
 .playlist-section,
 .songs-section {
@@ -460,6 +549,52 @@ a {
 .contact-section .contact-list div a {
   color: inherit;
   text-decoration: none;
+}
+
+/* Dojazd (directions) tile */
+.directions-section {
+  background: transparent;
+}
+
+.directions-card {
+  width: 100%;
+  max-width: 735px;
+  margin: 0 auto;
+}
+
+.directions-copy {
+  padding: 2.25rem 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  color: var(--text);
+  text-align: center;
+}
+
+.directions-copy h2 {
+  margin: 0 0 0.5rem;
+  color: var(--text);
+}
+
+.directions-copy h2:nth-of-type(2) {
+  margin-top: 2rem;
+}
+
+.directions-parking-info {
+  margin: 1.25rem 0;
+}
+
+.map-embed {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 1rem 0;
+}
+
+.map-embed iframe {
+  display: block;
+  width: 100%;
+  height: 320px;
+  border: 0;
 }
 
 /* Contact reveal styles */

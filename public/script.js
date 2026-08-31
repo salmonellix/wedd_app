@@ -6,7 +6,7 @@ const songsList = document.getElementById('songsList');
 const messageBox = document.getElementById('form-message');
 const likedStorageKey = 'weddingSongLikes';
 
-const targetDate = new Date('2026-08-22T17:30:00');
+const targetDate = new Date('2026-09-19T11:00:00');
 
 function setCountdown() {
   const now = new Date();
@@ -302,6 +302,101 @@ splash.addEventListener('click', () => {
 setCountdown();
 setInterval(setCountdown, 1000);
 fetchSongs();
+
+// Add-to-calendar hotspot on the hero "Save the date" image
+(function initAddToCalendar() {
+  const hotspot = document.getElementById('calendarHotspot');
+  const menu = document.getElementById('calendarMenu');
+  const googleLink = document.getElementById('calendarGoogleLink');
+  const icsButton = document.getElementById('calendarIcsButton');
+  if (!hotspot || !menu || !googleLink || !icsButton) return;
+
+  const eventTitle = 'Ślub Aleksandry i Szymona';
+  const eventLocation = 'Restauracja Pod Wiązem, ul. Dolnej Wsi 40, Gliwice';
+  const eventDetails = 'Ceremonia zaślubin Aleksandry i Szymona';
+  const startUtc = '20260919T090000Z';
+  const endUtc = '20260919T100000Z';
+
+  googleLink.href = 'https://calendar.google.com/calendar/render?' + new URLSearchParams({
+    action: 'TEMPLATE',
+    text: eventTitle,
+    dates: `${startUtc}/${endUtc}`,
+    details: eventDetails,
+    location: eventLocation
+  }).toString();
+
+  function escapeIcsText(text) {
+    return String(text).replace(/[\\;,]/g, (match) => '\\' + match).replace(/\n/g, '\\n');
+  }
+
+  function formatIcsTimestamp(date) {
+    return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+  }
+
+  function downloadIcs() {
+    const ics = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Aleksandra i Szymon//Wesele//PL',
+      'CALSCALE:GREGORIAN',
+      'BEGIN:VEVENT',
+      'UID:slub-aleksandra-szymon-20260919@wedapp',
+      `DTSTAMP:${formatIcsTimestamp(new Date())}`,
+      `DTSTART:${startUtc}`,
+      `DTEND:${endUtc}`,
+      `SUMMARY:${escapeIcsText(eventTitle)}`,
+      `DESCRIPTION:${escapeIcsText(eventDetails)}`,
+      `LOCATION:${escapeIcsText(eventLocation)}`,
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('\r\n');
+
+    const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Slub-Aleksandra-Szymon.ics';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  function closeMenu() {
+    menu.hidden = true;
+    hotspot.setAttribute('aria-expanded', 'false');
+  }
+
+  function toggleMenu() {
+    const isOpen = !menu.hidden;
+    if (isOpen) {
+      closeMenu();
+    } else {
+      menu.hidden = false;
+      hotspot.setAttribute('aria-expanded', 'true');
+    }
+  }
+
+  hotspot.addEventListener('click', (event) => {
+    event.stopPropagation();
+    toggleMenu();
+  });
+
+  icsButton.addEventListener('click', () => {
+    downloadIcs();
+    closeMenu();
+  });
+
+  googleLink.addEventListener('click', () => {
+    closeMenu();
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!menu.hidden && !menu.contains(event.target) && event.target !== hotspot) {
+      closeMenu();
+    }
+  });
+})();
 
 // Mobile menu toggle
 if (menuToggle && menu) {

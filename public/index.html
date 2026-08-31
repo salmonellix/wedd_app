@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css?v=20260815" />
+  <link rel="stylesheet" href="/styles.css?v=20260831f" />
 </head>
 <body class="splash-open">
   <div id="splash" class="splash-screen">
@@ -32,6 +32,7 @@
     <nav class="menu">
       <a href="#invite">Zaproszenie</a>
       <a href="#details">Szczegóły</a>
+      <a href="#directions">Dojazd</a>
       <a href="#contact">Kontakt</a>
       <a href="#playlist">Playlista</a>
     </nav>
@@ -41,6 +42,20 @@
     <section id="invite" class="section hero-section">
       <div class="hero-card">
         <img src="/zapro_2.png?v=20260815" alt="Aleksandra i Szymon" />
+        <button type="button" class="calendar-hotspot" id="calendarHotspot" aria-haspopup="true" aria-expanded="false" title="Dodaj do kalendarza">
+          <span class="calendar-hotspot-badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18">
+              <path fill="currentColor" d="M7 2v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7zm12 7v11H5V9h14z"/>
+              <rect x="11" y="11.5" width="2" height="6" fill="currentColor"/>
+              <rect x="9" y="13.5" width="6" height="2" fill="currentColor"/>
+            </svg>
+          </span>
+          <span class="sr-only">Dodaj datę ślubu do kalendarza</span>
+        </button>
+        <div class="calendar-menu" id="calendarMenu" hidden>
+          <a id="calendarGoogleLink" target="_blank" rel="noopener">Dodaj do Google Kalendarz</a>
+          <button type="button" id="calendarIcsButton">Pobierz .ics (Apple / Outlook)</button>
+        </div>
       </div>
     </section>
 
@@ -63,6 +78,38 @@
     <section id="details" class="section details-section">
       <div class="detail-card">
         <img src="/info.png?v=20260815" alt="Szczegóły" />
+      </div>
+    </section>
+
+    <section id="directions" class="section directions-section">
+      <div class="directions-card">
+        <div class="directions-copy">
+          <h2>Dojazd</h2>
+          <p>Restauracja Pod Wiązem, ul. Dolnej Wsi 40, Gliwice</p>
+          <p>O godzinie 11:00 planowane jest rozpoczęcie ceremonii zaślubin, dlatego prosimy o przybycie na miejsce chwilę przed 11.</p>
+          <div class="map-embed">
+            <iframe
+              src="https://www.google.com/maps?q=Restauracja+Pod+Wi%C4%85zem,+Dolnej+Wsi+40,+Gliwice&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+              title="Mapa - Restauracja Pod Wiązem"></iframe>
+          </div>
+           <h2>Parking</h2>
+          <p class="directions-parking-info">
+            Przy samej restauracji jest kilka miejsc parkingowych (trzeba uważać na zakazy).
+            Kawałek wcześniej znajduje się dodatkowy <b>parking restauracji przy ul. Dolnej Wsi 69A</b>.</p>
+            <p>Ulica Dolnej Wsi jest <b>jednokierunkowa</b>. Jeżeli pod samą restauracją nie będzie wolnych miejsc parkingowych, trzeba zrobić kółko ulicą Słowackiego, żeby wrócić pod adres Dolnej Wsi 69A.
+          </p>
+          <div class="map-embed">
+            <iframe
+              src="https://www.google.com/maps?q=Dolnej+Wsi+69A,+Gliwice&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+              title="Mapa - Parking, Dolnej Wsi 69A"></iframe>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -129,6 +176,6 @@
   <!-- reCAPTCHA v3: invisible, score-based. No visible checkbox — only a
        small "protected by reCAPTCHA" badge floats in the corner. -->
   <script src="https://www.google.com/recaptcha/api.js?render=6Lc5tIctAAAAADRtrhGy_dnu78zXcftJ5sMw5u_Z" async defer></script>
-  <script src="/script.js?v=20260815"></script>
+  <script src="/script.js?v=20260831"></script>
 </body>
 </html>
