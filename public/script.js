@@ -313,14 +313,17 @@ fetchSongs();
 
   const eventTitle = 'Ślub Aleksandry i Szymona';
   const eventLocation = 'Restauracja Pod Wiązem, ul. Dolnej Wsi 40, Gliwice';
-  const eventDetails = 'Ceremonia zaślubin Aleksandry i Szymona';
-  const startUtc = '20260919T090000Z';
-  const endUtc = '20260919T100000Z';
+  const eventDetails = 'Ceremonia zaślubin o godz. 11:00.';
+  // All-day event covering 19.09.2026. All-day dates use a plain YYYYMMDD value
+  // with an exclusive end date (the day after the event), per Google Calendar
+  // and iCalendar (RFC 5545) conventions for VALUE=DATE.
+  const startDate = '20260919';
+  const endDate = '20260920';
 
   googleLink.href = 'https://calendar.google.com/calendar/render?' + new URLSearchParams({
     action: 'TEMPLATE',
     text: eventTitle,
-    dates: `${startUtc}/${endUtc}`,
+    dates: `${startDate}/${endDate}`,
     details: eventDetails,
     location: eventLocation
   }).toString();
@@ -342,8 +345,8 @@ fetchSongs();
       'BEGIN:VEVENT',
       'UID:slub-aleksandra-szymon-20260919@wedapp',
       `DTSTAMP:${formatIcsTimestamp(new Date())}`,
-      `DTSTART:${startUtc}`,
-      `DTEND:${endUtc}`,
+      `DTSTART;VALUE=DATE:${startDate}`,
+      `DTEND;VALUE=DATE:${endDate}`,
       `SUMMARY:${escapeIcsText(eventTitle)}`,
       `DESCRIPTION:${escapeIcsText(eventDetails)}`,
       `LOCATION:${escapeIcsText(eventLocation)}`,
