@@ -59,7 +59,6 @@ app.use((req, res, next) => {
 });
 app.use((req, res, next) => {
   res.set('X-Robots-Tag', 'noindex, nofollow');
-  res.set('Cache-Control', 'no-store');
 
   if (req.path.startsWith('/api/')) {
     const now = Date.now();
@@ -82,18 +81,23 @@ app.use((req, res, next) => {
   next();
 });
 
-// Development: disable caching for all responses to ensure fresh files during development
+// Only the HTML document and API responses need to be revalidated on every
+// request so guests always see the latest edits. Static assets (images, CSS,
+// JS) are safe to let the browser cache — this app already busts them with
+// `?v=` query strings whenever a file actually changes.
 app.use((req, res, next) => {
-  res.set('Cache-Control','no-store, no-cache, must-revalidate, proxy-revalidate');
-  res.set('Pragma','no-cache');
-  res.set('Expires','0');
+  if (req.path === '/' || req.path.endsWith('.html') || req.path.startsWith('/api/')) {
+    res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.set('Pragma', 'no-cache');
+    res.set('Expires', '0');
+  }
   next();
 });
 
 app.use(express.static(path.join(__dirname, 'public'), {
-  etag: false,
-  lastModified: false,
-  maxAge: 0
+  etag: true,
+  lastModified: true,
+  maxAge: '7d'
 }));
 
 app.get('/robots.txt', (req, res) => {

@@ -1180,36 +1180,6 @@ body.splash-open {
 
 /* Splash / start screen - mobile tweaks */
 @media (max-width: 859px) {
-  .splash-screen {
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35));
-    padding: 1rem 0.5rem;
-  }
-
-  .splash-content {
-    align-items: center;
-    justify-content: center;
-    width: min(92vw, 760px);
-    max-width: 92vw;
-    margin: 0 auto;
-    position: relative;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .splash-image {
-    position: relative;
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 20px;
-    box-shadow: 0 18px 50px rgba(0,0,0,0.35);
-  }
-
   .splash-text {
     font-size: 1.05rem;
     padding: 0.5rem 0.75rem;
@@ -1217,12 +1187,6 @@ body.splash-open {
     max-width: 100%;
     line-height: 1.2;
     color: #fff;
-  }
-
-  /* Make the tap area clear and not obscured by system UI */
-  .splash-screen {
-    padding-bottom: env(safe-area-inset-bottom);
-    padding-top: env(safe-area-inset-top);
   }
 }
 
