@@ -357,6 +357,7 @@ a {
 }
 
 .details-section,
+.reception-section,
 .directions-section,
 .contact-section,
 .playlist-section,
@@ -549,6 +550,51 @@ a {
 .contact-section .contact-list div a {
   color: inherit;
   text-decoration: none;
+}
+
+/* Przyjęcie (reception) tile */
+.reception-section {
+  background: transparent;
+}
+
+.reception-card {
+  width: 100%;
+  max-width: 735px;
+  margin: 0 auto;
+}
+
+.reception-copy {
+  padding: 2.25rem 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  color: var(--text);
+  text-align: center;
+}
+
+.reception-copy h2 {
+  margin: 0 0 0.5rem;
+  color: var(--text);
+}
+
+.reception-note {
+  margin-top: 0.5rem;
+  font-style: italic;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.reception-photo {
+  width: 100%;
+  max-width: 147px;
+  margin: 1.5rem auto 0;
+}
+
+.reception-photo img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
 }
 
 /* Dojazd (directions) tile */
@@ -1038,6 +1084,11 @@ a {
   font-weight: 700;
 }
 
+.topbar,
+main {
+  transition: opacity 0.6s ease;
+}
+
 .splash-screen {
   position: fixed;
   inset: 0;
@@ -1047,6 +1098,7 @@ a {
   z-index: 100;
   cursor: pointer;
   background: rgba(0, 0, 0, 0.12);
+  transition: opacity 0.6s ease;
 }
 
 .splash-content {

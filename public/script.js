@@ -296,7 +296,7 @@ splash.addEventListener('click', () => {
   document.body.classList.remove('splash-open');
   splash.style.opacity = '0';
   splash.style.pointerEvents = 'none';
-  setTimeout(() => splash.remove(), 500);
+  setTimeout(() => splash.remove(), 600);
 });
 
 setCountdown();

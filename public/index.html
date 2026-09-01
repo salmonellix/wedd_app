@@ -7,17 +7,10 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <title>Aleksandra i Szymon | Zaproszenie</title>
-  <script>
-    const url = new URL(window.location.href);
-    if (!url.searchParams.has('v')) {
-      url.searchParams.set('v', Date.now());
-      window.location.replace(url.toString());
-    }
-  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css?v=20260831f" />
+  <link rel="stylesheet" href="/styles.css?v=20260901f" />
 </head>
 <body class="splash-open">
   <div id="splash" class="splash-screen">
@@ -78,6 +71,20 @@
     <section id="details" class="section details-section">
       <div class="detail-card">
         <img src="/info.png?v=20260815" alt="Szczegóły" />
+      </div>
+    </section>
+
+    <section id="reception" class="section reception-section">
+      <div class="reception-card">
+        <div class="reception-copy">
+          <h2>Przyjęcie</h2>
+          <p>Po części oficjalnej zapraszamy rodzinę na przyjęcie weselne. Odbędzie się ono w nowej oranżerii, 
+            znajdującej się również w ogrodzie restauracji Pod Wiązem — zadaszonej, ogrzewanej i klimatyzowanej, więc nie musicie martwić się o warunki pogodowe.</p> 
+            <p>Czeka na Was też pyszne jedzenie — zaczniemy od obiadu, w środku zabawy pojawi się tort i deser, później zimna płyta, a wieczorem kolacja.</p>
+          <div class="reception-photo">
+            <img src="/rest.png?v=20260901" alt="Oranżeria restauracji Pod Wiązem" />
+          </div>
+        </div>
       </div>
     </section>
 
@@ -176,6 +183,6 @@
   <!-- reCAPTCHA v3: invisible, score-based. No visible checkbox — only a
        small "protected by reCAPTCHA" badge floats in the corner. -->
   <script src="https://www.google.com/recaptcha/api.js?render=6Lc5tIctAAAAADRtrhGy_dnu78zXcftJ5sMw5u_Z" async defer></script>
-  <script src="/script.js?v=20260831b"></script>
+  <script src="/script.js?v=20260831c"></script>
 </body>
 </html>
